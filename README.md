@@ -9,7 +9,7 @@ Docker, Docker buildx(Dockerのバージョンが23以前の場合)
 
 ## サーバー起動の手順
 
-### Docker イメージのビルド
+### 1. Dockerイメージのビルド
 
 `necesse` というタグ名でイメージを作成します。
 
@@ -25,7 +25,20 @@ Dockerのバージョンが23以前の場合
 docker buildx build -t necesse .
 ```
 
-### Docker コンテナの立ち上げ
+### (参考情報) Dockerfileに記載していること
+
+#### イメージビルド時
+
+1. SteamCMDでNecesseのサーバー設定
+    - Steam App ID: `1169370`
+2. セーブデータのディレクトリ作成
+3. サーバー起動スクリプトの作成
+
+#### コンテナ起動時
+
+1. ワールド作成 or サーバー起動
+
+### 2. Dockerコンテナの起動
 
 #### `create_world.sh`
 
@@ -62,19 +75,9 @@ docker restart necesse
 
 ワールドを作り直したい場合は、下記「コンテナの停止と削除」を行い、再度上記の「サーバー起動の手順」を行ってください。
 
-#### コンテナの停止と削除
+### コンテナの停止と削除
 
 ```
 docker stop necesse
 docker rm necesse
 ```
-
-## Docker内やってること
-
-1. SteamCMDでNecesseのサーバー設定
-    - Steam App ID: `1169370`
-2. セーブデータのディレクトリ作成
-3. サーバー起動
-    - ワールド作成
-    - サーバー起動
-
